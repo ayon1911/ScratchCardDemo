@@ -13,6 +13,8 @@
 		344875EB23FC120000D063DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 344875E923FC120000D063DB /* Main.storyboard */; };
 		344875ED23FC120200D063DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 344875EC23FC120200D063DB /* Assets.xcassets */; };
 		344875F023FC120200D063DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 344875EE23FC120200D063DB /* LaunchScreen.storyboard */; };
+		344875F823FC121C00D063DB /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344875F723FC121C00D063DB /* MainVC.swift */; };
+		344875FA23FC13A800D063DB /* ScratchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344875F923FC13A800D063DB /* ScratchCardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		344875EC23FC120200D063DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		344875EF23FC120200D063DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		344875F123FC120200D063DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		344875F723FC121C00D063DB /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		344875F923FC13A800D063DB /* ScratchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScratchCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				344875EC23FC120200D063DB /* Assets.xcassets */,
 				344875EE23FC120200D063DB /* LaunchScreen.storyboard */,
 				344875F123FC120200D063DB /* Info.plist */,
+				344875F723FC121C00D063DB /* MainVC.swift */,
+				344875F923FC13A800D063DB /* ScratchCardView.swift */,
 			);
 			path = ScratchCardDemo;
 			sourceTree = "<group>";
@@ -139,7 +145,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				344875E823FC120000D063DB /* ViewController.swift in Sources */,
+				344875F823FC121C00D063DB /* MainVC.swift in Sources */,
 				344875E423FC120000D063DB /* AppDelegate.swift in Sources */,
+				344875FA23FC13A800D063DB /* ScratchCardView.swift in Sources */,
 				344875E623FC120000D063DB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
