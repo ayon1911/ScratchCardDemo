@@ -9,15 +9,13 @@
 import UIKit
 
 class MainVC: UIViewController, ScratchCardDelegate {
-    
-    
-    
+
     let viewBehindScratchCard = UIView()
-    let previewView = ScratchCardView(image: UIImage(named: "test")!)
+    let previewView = ScratchCardView(image: UIImage(named: "scratchImage")!)
     let progressLabel = UILabel()
 
     override func viewDidLoad() {
-        view.backgroundColor = #colorLiteral(red: 0.4392156899, green: 0.01176470611, blue: 0.1921568662, alpha: 1)
+        view.backgroundColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         
         previewView.scratchDelegate = self
         
@@ -30,7 +28,7 @@ class MainVC: UIViewController, ScratchCardDelegate {
         
 
         viewBehindScratchCard.isUserInteractionEnabled = true
-        viewBehindScratchCard.backgroundColor = .red
+        viewBehindScratchCard.backgroundColor = .clear
       
        viewBehindScratchCard.translatesAutoresizingMaskIntoConstraints = false
        view.addSubview(viewBehindScratchCard)
@@ -40,7 +38,7 @@ class MainVC: UIViewController, ScratchCardDelegate {
        viewBehindScratchCard.widthAnchor.constraint(equalToConstant: 400).isActive = true
        viewBehindScratchCard.heightAnchor.constraint(equalToConstant: 320).isActive = true
         
-        let couponView = UIImageView(image: UIImage(named: "cola"))
+        let couponView = UIImageView(image: UIImage(named: "coupon"))
         couponView.contentMode = .scaleAspectFit
         couponView.translatesAutoresizingMaskIntoConstraints = false
         viewBehindScratchCard.addSubview(couponView)
@@ -71,10 +69,10 @@ class MainVC: UIViewController, ScratchCardDelegate {
         progressLabel.textAlignment = .center
         progressLabel.textColor = .white
         progressLabel.font = UIFont.systemFont(ofSize: 30)
-        
-        progressLabel.topAnchor.constraint(equalTo: resetButton.bottomAnchor, constant: 20).isActive = true
-        progressLabel.leadingAnchor.constraint(equalTo: viewBehindScratchCard.leadingAnchor, constant: 20).isActive = true
-        progressLabel.trailingAnchor.constraint(equalTo: viewBehindScratchCard.trailingAnchor, constant: -20).isActive = true
+
+        progressLabel.bottomAnchor.constraint(equalTo: viewBehindScratchCard.bottomAnchor, constant: -40).isActive = true
+        progressLabel.leadingAnchor.constraint(equalTo: viewBehindScratchCard.leadingAnchor, constant: 30).isActive = true
+        progressLabel.trailingAnchor.constraint(equalTo: viewBehindScratchCard.trailingAnchor, constant: -30).isActive = true
         progressLabel.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
     }
@@ -83,9 +81,8 @@ class MainVC: UIViewController, ScratchCardDelegate {
         previewView.reset()
         progressLabel.text = String.init(format: "-- %d %@ --", 0 , "%")
     }
-    
+
     func scratch(percentage value: Int) {
         progressLabel.text = String.init(format: "-- %d %@ --", value , "%")
     }
-    
 }
