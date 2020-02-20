@@ -8,6 +8,7 @@
 
 
 import UIKit
+
 protocol ScratchCardDelegate {
     func scratch(percentage value:Int)
 }
@@ -19,7 +20,7 @@ class ScratchCardView: UIView {
     var context:CGContext!
     var co_ordinates = [(startPoint:CGPoint,endPoint:CGPoint)]()
     var scratchDelegate:ScratchCardDelegate?
-
+    
     let scratchCardImage:UIImage
     
     init(image: UIImage) {
@@ -52,18 +53,17 @@ class ScratchCardView: UIView {
         self.endPoint = touches.first?.location(in: self)
         
         guard self.frame.contains(self.endPoint) else { return }
-                
+        
         co_ordinates.append((self.startPoint,self.endPoint))
         
         self.startPoint = endPoint
-        
         
         setNeedsDisplay()
         
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-       print(getTransparentPixelsPercent())
+        print(getTransparentPixelsPercent())
         let scratchPecennt = Int(getTransparentPixelsPercent() * 100)
         scratchDelegate?.scratch(percentage: scratchPecennt)
     }
@@ -86,33 +86,30 @@ extension ScratchCardView {
     }
 }
 
-
-import CoreGraphics
-
 extension UIView {
-
+    
     func getSnapshot() -> CGImage? {
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
         guard let ctx = UIGraphicsGetCurrentContext() else {
             return nil
         }
-
+        
         layer.render(in: ctx)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image?.cgImage
     }
-
+    
     func getTransparentPixelsPercent() -> Double {
         guard let image = getSnapshot(), let imageData = image.dataProvider?.data else {
             return 0.0
         }
-
+        
         let width = image.width
         let height = image.height
         let imageDataPointer: UnsafePointer<UInt8> = CFDataGetBytePtr(imageData)
         var transparentPixelCount = 0
-
+        
         for x in 0...width {
             for y in 0...height {
                 let pixelDataPosition = ((width * y) + x) * 2
