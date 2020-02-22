@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol ScratchCardContainerDelegate where Self: UIViewController {
+    func transperentPixle(_ value: Int)
+}
+
 class ScratchCardContainerView: UIView, ScratchCardDelegate {
 
     let scratchCardView = ScratchCardView(image: UIImage(named: "scratchImage")!)
     let progressLabel = UILabel()
+    var delegate: ScratchCardContainerDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,5 +61,6 @@ class ScratchCardContainerView: UIView, ScratchCardDelegate {
     
     func scratch(percentage value: Int) {
         progressLabel.text = String.init(format: "-- %d %@ --", value , "%")
+        delegate?.transperentPixle(value)
     }
 }

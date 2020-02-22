@@ -9,19 +9,19 @@
 
 import UIKit
 
-protocol ScratchCardDelegate {
+protocol ScratchCardDelegate where Self: ScratchCardContainerView {
     func scratch(percentage value:Int)
 }
 
 class ScratchCardView: UIView {
     
-    var startPoint:CGPoint!
-    var endPoint:CGPoint!
-    var context:CGContext!
-    var co_ordinates = [(startPoint:CGPoint,endPoint:CGPoint)]()
+    private var startPoint:CGPoint!
+    private var endPoint:CGPoint!
+    private var context:CGContext!
+    private var co_ordinates = [(startPoint:CGPoint,endPoint:CGPoint)]()
     var scratchDelegate:ScratchCardDelegate?
     
-    let scratchCardImage:UIImage
+    private let scratchCardImage:UIImage
     
     init(image: UIImage) {
         self.scratchCardImage = image
@@ -51,19 +51,15 @@ class ScratchCardView: UIView {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         self.endPoint = touches.first?.location(in: self)
-        
         guard self.frame.contains(self.endPoint) else { return }
-        
         co_ordinates.append((self.startPoint,self.endPoint))
         
         self.startPoint = endPoint
-        
         setNeedsDisplay()
         
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print(getTransparentPixelsPercent())
         let scratchPecennt = Int(getTransparentPixelsPercent() * 100)
         scratchDelegate?.scratch(percentage: scratchPecennt)
     }
@@ -77,16 +73,13 @@ class ScratchCardView: UIView {
         context.addLine(to: toPoint)
         context.strokePath()
     }
-}
-
-extension ScratchCardView {
     func reset() {
         co_ordinates.removeAll()
         self.setNeedsDisplay()
     }
 }
 
-extension UIView {
+extension ScratchCardView {
     
     func getSnapshot() -> CGImage? {
         UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
